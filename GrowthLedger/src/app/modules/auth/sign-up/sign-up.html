@@ -1,0 +1,80 @@
+<div class="signup-container">
+
+    <!-- LEFT IMAGE -->
+    <div class="image-section">
+        @if(loginFlag()=='accounting'){
+        <img src="../../../../assets/for_Book_keeping_sign-up.png" alt="Signup Illustration">
+        }
+        @else {
+        <img src="../../../../assets/for_investing_sign-up.png" alt="Signup Illustration">
+        }
+
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="form-section">
+        <div class="form-wrapper">
+
+            <h2>Create Your Account</h2>
+
+            <p class="subtitle">
+                @if(loginFlag()=='accounting'){
+                Set up your business and manage your books efficiently
+                }
+                @else {
+                Start your investment journey
+                }
+            </p>
+
+            <!-- BUSINESS / ACCOUNTING -->
+            @if(loginFlag()=='accounting'){
+            <form>
+
+                <input type="text" placeholder="Business Name" />
+                <input type="text" placeholder="Owner Name" />
+                <input type="text" placeholder="GSTIN (Optional)" />
+
+                <select>
+                    <option value="">Select Business Type</option>
+                    <option>Startup</option>
+                    <option>SME</option>
+                    <option>Enterprise</option>
+                    <option>Freelancer</option>
+                </select>
+
+                <input type="email" placeholder="Email Address" />
+                <input type="tel" placeholder="Phone Number" />
+                <input type="password" placeholder="Password" />
+
+                <button type="submit" class="primary-btn">
+                    Create Business Account
+                </button>
+
+            </form>
+            }
+
+            <!-- INVESTOR -->
+            @else {
+            <form>
+
+                <input type="text" placeholder="Full Name" />
+                <input type="email" placeholder="Email Address" />
+                <input type="tel" placeholder="Phone Number" />
+                <input type="password" placeholder="Password" />
+
+                <button type="button" class="primary-btn">
+                    Next → Complete KYC
+                </button>
+
+            </form>
+            }
+
+            <!-- LOGIN LINK -->
+            <p class="login-text">
+                Already have an account?
+                <span class="login-link">Login</span>
+            </p>
+
+        </div>
+    </div>
+</div>
