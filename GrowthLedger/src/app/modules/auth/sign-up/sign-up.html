@@ -1,60 +1,102 @@
-<div class="signup-container">
+<div class="signup-container" [style.background-image]="getBackgroundImage()">
 
-    <!-- LEFT IMAGE -->
-    <div class="image-section">
-        @if(loginFlag()=='accounting'){
-        <img src="../../../../assets/for_Book_keeping_sign-up.png" alt="Signup Illustration">
-        }
-        @else {
-        <img src="../../../../assets/for_investing_sign-up.png" alt="Signup Illustration">
-        }
+    <!-- OVERLAY -->
+    <div class="overlay"></div>
 
-    </div>
-
-    <!-- RIGHT FORM -->
+    <!-- CENTER FORM -->
     <div class="form-section">
         <div class="form-wrapper">
 
             <h2>Create Your Account</h2>
 
             <p class="subtitle">
-                @if(loginFlag()=='accounting'){
-                Set up your business and manage your books efficiently
-                }
-                @else {
-                Start your investment journey
-                }
+                @if (loginFlag() === 'accounting') {
+            Set up your business and manage your books efficiently
+            } @else {
+            Start your investment journey
+            }
             </p>
 
-            <!-- BUSINESS / ACCOUNTING -->
-            @if(loginFlag()=='accounting'){
-            <form>
+            <!-- ACCOUNTING FORM -->
+            @if (loginFlag() === 'accounting') {
+            <form class="multi-step-form" [formGroup]="SignUpFormBO" (ngSubmit)="AccountingSubmitHandle()">
 
-                <input type="text" placeholder="Business Name" />
-                <input type="text" placeholder="Owner Name" />
-                <input type="text" placeholder="GSTIN (Optional)" />
+                <!-- STEP 1 -->
+                @if (currentStep() == 1) {
+                <div class="form-step">
 
-                <select>
-                    <option value="">Select Business Type</option>
-                    <option>Startup</option>
-                    <option>SME</option>
-                    <option>Enterprise</option>
-                    <option>Freelancer</option>
-                </select>
+                    <input type="text" placeholder="Business Name" formControlName="businessName"/>
+                    @if (businessName?.touched && businessName?.errors?.['required']) {
+                         <p>businessName is required</p>
+                    }
+                    <input type="text" placeholder="Owner Name" formControlName="ownerName"/>
+                    @if (ownerName?.touched && ownerName?.errors?.['required']) {
+                         <p>ownerName is required</p>
+                    }
+                    <input type="email" placeholder="Email Address" formControlName="email"/>
+                    @if (email?.touched && email?.errors?.['required']) {
+                         <p>Email is required</p>
+                    }
+                    @if (email?.touched && email?.errors?.['email']) {
+                         <p>Enter proper email</p>
+                    }
+                    <input type="tel" placeholder="Phone Number" formControlName="phoneNumber"/>
+                    @if (phoneNumber?.touched && phoneNumber?.errors?.['required']) {
+                         <p>phoneNumber is required</p>
+                    }
+                    <input type="password" placeholder="Password" formControlName="password"/>
+                    @if (password?.touched && password?.errors?.['required']) {
+                         <p>password is required</p>
+                    }
+                    @if (password?.touched && password?.errors?.['minlength']) {
+                         <p>password is required for minimum 8 charactersd</p>
+                    }
+                </div>
 
-                <input type="email" placeholder="Email Address" />
-                <input type="tel" placeholder="Phone Number" />
-                <input type="password" placeholder="Password" />
+                <!-- FOOTER -->
+                <div class="step-footer">
+                    <button type="button" class="next-btn" (click)="nextStep()">
+                        <mat-icon>arrow_forward</mat-icon>
+                    </button>
+                </div>
+                }
 
-                <button type="submit" class="primary-btn">
-                    Create Business Account
-                </button>
+                <!-- STEP 2 -->
+                @if (currentStep() == 2) {
+                <div class="form-step">
+
+                    <input type="text" placeholder="Business Type" formControlName="businessType"/>
+                    @if (businessType?.touched && businessType?.errors?.['required']) {
+                         <p>businessType is required</p>
+                    }
+                    <input type="text" placeholder="GST Number" formControlName="gstinNumber"/>
+                    @if (gstinNumber?.touched && gstinNumber?.errors?.['required']) {
+                         <p>gstinNumber is required</p>
+                    }
+                    <input type="text" placeholder="Business Address" formControlName="businessAddress"/>
+                    @if (businessAddress?.touched && businessAddress?.errors?.['required']) {
+                         <p>businessAddress is required</p>
+                    }
+
+                </div>
+
+                <!-- FOOTER -->
+                <div class="step-footer">
+
+                    <button type="button" class="back-btn" (click)="prevStep()">
+                        <mat-icon>arrow_back</mat-icon>
+                    </button>
+
+                    <button type="submit" class="submit-btn">
+                        Submit
+                    </button>
+
+                </div>
+                }
 
             </form>
-            }
-
-            <!-- INVESTOR -->
-            @else {
+            } @else {
+            <!-- INVESTOR FORM -->
             <form>
 
                 <input type="text" placeholder="Full Name" />
@@ -77,4 +119,5 @@
 
         </div>
     </div>
+
 </div>
