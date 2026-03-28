@@ -51,4 +51,8 @@ export class FunderKyc {
 openCamera() {
   console.log("Camera trigger");
 }
+
+handleSubmit(){
+
+}
 }

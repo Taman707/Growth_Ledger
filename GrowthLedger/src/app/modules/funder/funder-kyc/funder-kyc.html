@@ -1,25 +1,30 @@
 <div class="kyc-container">
 
-  <!-- OVERLAY -->
-  <div class="overlay"></div>
-
   <div class="kyc-content">
 
-    <!-- LEFT SIDE -->
-    <div class="kyc-left">
-      <div class="left-content">
-        <h2>Secure KYC</h2>
-        <p>Your identity is सुरक्षित 🔒</p>
+    <!-- LEFT SIDE (NEW HERO STYLE) -->
+<!-- LEFT SIDE -->
+<!-- LEFT SIDE -->
+<div class="kyc-left">
 
-        <img src="../../../../assets/kycImage.png" alt="KYC">
+  <div class="left-overlay"></div>
 
-        <div class="trust-points">
-          <p>✔ Encrypted data</p>
-          <p>✔ Quick verification</p>
-          <p>✔ Trusted process</p>
-        </div>
-      </div>
+  <div class="left-content">
+    <h2>Secure KYC Verification</h2>
+
+    <!-- 🔥 UPDATED TEXT -->
+    <p class="tagline">
+      Fast, secure and trusted identity verification for your account
+    </p>
+
+    <div class="trust-points">
+      <p>✔ Encrypted data protection</p>
+      <p>✔ Seamless verification process</p>
+      <p>✔ Trusted by investors</p>
     </div>
+  </div>
+
+</div>
 
     <!-- RIGHT SIDE -->
     <div class="kyc-right">
@@ -29,60 +34,60 @@
         <h2>Complete Your KYC</h2>
         <p class="subtitle">Please verify your identity to continue</p>
 
-        <form [formGroup]="kycFields">
+        <form [formGroup]="kycFields" (ngSubmit)="handleSubmit()">
 
-  <!-- FULL NAME -->
-  <div class="form-field">
-    <label>
-      Enter your Full Name
-      <div>Mention same as per the id proof</div>
-    </label>
-    <input type="text" formControlName="fullN">
-  </div>
+          <!-- FULL NAME -->
+          <div class="form-field">
+            <label>
+              Enter your Full Name
+              <div>Mention same as per the id proof</div>
+            </label>
+            <input type="text" formControlName="fullN">
+          </div>
 
-  <!-- DOB -->
-  <div class="form-field">
-    <label>
-      Enter DOB
-      <div>Mention same as per the id proof</div>
-    </label>
-    <input type="date" formControlName="Dob">
-  </div>
+          <!-- DOB -->
+          <div class="form-field">
+            <label>
+              Enter DOB
+              <div>Mention same as per the id proof</div>
+            </label>
+            <input type="date" formControlName="Dob">
+          </div>
 
-  <!-- DOCUMENT (INLINE) -->
-  <div class="form-field inline-field">
-    <div class="label-block">
-      <label>
-        Upload your ID proof
-        <div>Aadhaar / PAN / Driving License</div>
-      </label>
-    </div>
-    <div class="input-block">
-      <input type="file" (change)="onFileSelected($event)">
-    </div>
-  </div>
+          <!-- DOCUMENT -->
+          <div class="form-field inline-field">
+            <div class="label-block">
+              <label>
+                Upload your ID proof
+                <div>Aadhaar / PAN / Driving License</div>
+              </label>
+            </div>
+            <div class="input-block">
+              <input type="file" (change)="onFileSelected($event)">
+            </div>
+          </div>
 
-  <!-- SELFIE (INLINE) -->
-  <div class="form-field inline-field">
-    <div class="label-block">
-      <label>
-        Take Picture
-        <div>Make sure your face is visible</div>
-      </label>
-    </div>
-    <div class="input-block">
-      <button type="button" class="primary-btn" (click)="openCamera()">
-        Capture
-      </button>
-    </div>
-  </div>
+          <!-- SELFIE -->
+          <div class="form-field inline-field">
+            <div class="label-block">
+              <label>
+                Take Picture
+                <div>Make sure your face is visible</div>
+              </label>
+            </div>
+            <div class="input-block">
+              <button type="button" class="primary-btn" (click)="openCamera()">
+                Capture
+              </button>
+            </div>
+          </div>
 
-  <!-- BUTTON -->
-  <button type="button" class="submit-btn">
-    Next
-  </button>
+          <!-- BUTTON -->
+          <button type="button" class="submit-btn">
+            NEXT
+          </button>
 
-</form>
+        </form>
 
       </div>
 
