@@ -149,7 +149,11 @@ showErr(){
       // if there is some field not yet validated do not route
       // show the error instead.
     }
-    this.router.navigate(['funder-kyc']);
+    this.router.navigate(['funder-kyc'],{
+      queryParams:{
+        fullName:this.SignUpFormI.value.fullName
+      }
+    });
   }
 
   goToLogin(){
