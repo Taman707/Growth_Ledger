@@ -73,7 +73,11 @@ handleSubmit() {
     return;
   }
 
-  this.router.navigate(['/funder-kyc/confirm'])
+  this.router.navigate(['/funder-kyc/confirm'],{
+    queryParams:{
+      basicInfo : JSON.stringify(this.receivedInvestorInformation)
+    }
+  })
 
 }
 }
