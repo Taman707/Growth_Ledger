@@ -34,61 +34,88 @@
         <h2>Complete Your KYC</h2>
         <p class="subtitle">Please verify your identity to continue</p>
 
-        <form [formGroup]="kycFields" (ngSubmit)="handleSubmit()">
+      <form [formGroup]="kycFields" (ngSubmit)="handleSubmit()">
 
-          <!-- FULL NAME -->
-          <div class="form-field">
-            <label>
-              Enter your Full Name
-              <div>Mention same as per the id proof</div>
-            </label>
-            <input type="text" formControlName="fullN">
-          </div>
+  <!-- FULL NAME -->
+  <div class="form-field">
+    <label>
+      Enter your Full Name
+      <div>Mention same as per the id proof</div>
+    </label>
 
-          <!-- DOB -->
-          <div class="form-field">
-            <label>
-              Enter DOB
-              <div>Mention same as per the id proof</div>
-            </label>
-            <input type="date" formControlName="Dob">
-          </div>
+    <input type="text" formControlName="fullN">
 
-          <!-- DOCUMENT -->
-          <div class="form-field inline-field">
-            <div class="label-block">
-              <label>
-                Upload your ID proof
-                <div>Aadhaar / PAN / Driving License</div>
-              </label>
-            </div>
-            <div class="input-block">
-              <input type="file" (change)="onFileSelected($event)">
-            </div>
-          </div>
+    <span class="error-text">
+      @if (fullN?.touched && fullN?.errors?.['required']) {
+        Full name is required
+      }
+    </span>
+  </div>
 
-          <!-- SELFIE -->
-          <div class="form-field inline-field">
-            <div class="label-block">
-              <label>
-                Take Picture
-                <div>Make sure your face is visible</div>
-              </label>
-            </div>
-            <div class="input-block">
-              <button type="button" class="primary-btn" (click)="openCamera()">
-                Capture
-              </button>
-            </div>
-          </div>
+  <!-- DOB -->
+  <div class="form-field">
+    <label>
+      Enter DOB
+      <div>Mention same as per the id proof</div>
+    </label>
 
-          <!-- BUTTON -->
-          <button type="button" class="submit-btn">
-            NEXT
-          </button>
+    <input type="date" formControlName="Dob">
 
-        </form>
+    <span class="error-text">
+      @if (Dob?.touched && Dob?.errors?.['required']) {
+        Date of birth is required
+      }
+    </span>
+  </div>
 
+  <!-- DOCUMENT -->
+  <div class="form-field inline-field">
+    <div class="label-block">
+      <label>
+        Upload your ID proof
+        <div>Aadhaar / PAN / Driving License</div>
+      </label>
+
+      <span class="error-text">
+        @if (docUpload?.touched && docUpload?.errors?.['required']) {
+          Document is required
+        }
+      </span>
+    </div>
+
+    <div class="input-block">
+      <input type="file" (change)="onFileSelected($event)">
+    </div>
+  </div>
+
+  <!-- SELFIE -->
+  <div class="form-field inline-field">
+    <div class="label-block">
+      <label>
+        Take Picture
+        <div>Make sure your face is visible</div>
+      </label>
+
+      <span class="error-text">
+        @if (selfie?.touched && selfie?.errors?.['required']) {
+          Selfie is required
+        }
+      </span>
+    </div>
+
+    <div class="input-block">
+      <button type="button" class="primary-btn" (click)="openCamera()">
+         Capture
+      </button>
+    </div>
+  </div>
+
+  <!-- BUTTON -->
+  <button type="submit" class="submit-btn">
+    NEXT
+  </button>
+
+</form>
       </div>
 
     </div>

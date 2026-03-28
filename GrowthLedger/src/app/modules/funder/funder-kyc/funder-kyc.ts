@@ -1,6 +1,7 @@
 import { Component , signal} from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Investor } from '../../../shared/models/investor.model';
 
 @Component({
   selector: 'app-funder-kyc',
@@ -10,18 +11,28 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FunderKyc {
 
-  constructor(private route:ActivatedRoute){}
+  constructor(private route:ActivatedRoute, private router:Router){}
+
+    // class level variable for investor information storage
+    receivedInvestorInformation!: Investor;
 
   fullName=signal<string|null>('');
   ngOnInit(){
     this.route.queryParams.subscribe((param)=>{
       this.fullName.set(param['fullName']);
+        if (param['investorInfo']) {
+          this.receivedInvestorInformation = JSON.parse(param['investorInfo']);
+        }
     })
+
     if(this.fullName() != ''){
         this.kycFields.patchValue({
           fullN: this.fullName()
         });
     }
+
+    console.log('received obj is ', this.receivedInvestorInformation);
+
   }
 
   kycFields = new FormGroup({
@@ -43,16 +54,26 @@ export class FunderKyc {
   get selfie(){
     return this.kycFields.get('selfie');
   }
+
   onFileSelected(event: any) {
   const file = event.target.files[0];
-  console.log(file);
+  if (file) {
+    this.kycFields.patchValue({ docUpload: file });
+  }
 }
 
 openCamera() {
-  console.log("Camera trigger");
+  // your camera logic
+  this.kycFields.patchValue({ selfie: 'captured' }); // temp
 }
 
-handleSubmit(){
+handleSubmit() {
+  if (this.kycFields.invalid) {
+    this.kycFields.markAllAsTouched();
+    return;
+  }
+
+  this.router.navigate(['/funder-kyc/confirm'])
 
 }
 }

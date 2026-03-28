@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Investor } from '../../../shared/models/investor.model';
 
 
 @Component({
@@ -14,6 +15,9 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class SignUp {
 
   constructor(private routes: ActivatedRoute,private router:Router) { };
+
+  // class level variable for investor information storage
+  investorInformation!: Investor;
 
   loginFlag = signal<string | null>('');
   ngOnInit() {
@@ -142,6 +146,18 @@ showErr(){
     return this.SignUpFormI.get('pwd');
   }
 
+  // I have used the different field names for the reactive form for investor signup to reduce the duplication issue from the signup form from the signup form of business owner.
+  // now as the var names are different need to create a mapper funciton
+  private mapInvestorFormToModel(): Investor {
+  return {
+    fullName: this.SignUpFormI.value.fullName!,
+    email: this.SignUpFormI.value.emailAdd!,
+    phoneNumber: this.SignUpFormI.value.phoneNo!,
+    password: this.SignUpFormI.value.pwd!
+  };
+
+  // ek object return kardo jo ki Investor type ka hai aur usme fields ye ye bharni hai
+}
   InvestingSubmitHandle(){
     if(this.SignUpFormI.invalid){
       this.SignUpFormI.markAllAsTouched();
@@ -149,9 +165,13 @@ showErr(){
       // if there is some field not yet validated do not route
       // show the error instead.
     }
+    this.investorInformation = this.mapInvestorFormToModel();
+    console.log(this.investorInformation);
+
     this.router.navigate(['funder-kyc'],{
       queryParams:{
-        fullName:this.SignUpFormI.value.fullName
+        fullName : this.investorInformation['fullName'],
+        investorInfo: JSON.stringify(this.investorInformation)
       }
     });
   }
@@ -163,4 +183,7 @@ showErr(){
       }
     });
   }
+
+
+
 }
