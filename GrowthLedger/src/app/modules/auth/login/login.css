@@ -6,15 +6,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #02150f, #071d16);
+    background: linear-gradient(135deg, #02150f, #071d16),
+                url('../../../../assets/loginBGImage.png') no-repeat center center;
+    background-size: cover;
 }
 
 /* OVERLAY */
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(5, 15, 10, 0.7);
+    background: rgba(5, 15, 10, 0.7); /* dark overlay */
     backdrop-filter: blur(6px);
+    z-index: 1;
 }
 
 /* FORM SECTION */
@@ -22,7 +25,7 @@
     position: relative;
     z-index: 2;
     width: 100%;
-    max-width: 420px; /* slightly bigger than previous */
+    max-width: 420px;
     padding: 20px;
 }
 
@@ -47,7 +50,7 @@ h2 {
 }
 
 .subtitle {
-    color: #a5d6a7; /* softer green like KYC */
+    color: #a5d6a7;
     font-size: 14px;
     text-align: center;
     margin-bottom: 15px;
@@ -61,7 +64,7 @@ h2 {
 }
 
 .form-field label {
-    color: #c8e6c9; /* lighter green for label */
+    color: #c8e6c9;
     font-size: 13px;
     font-weight: 500;
 }
@@ -134,7 +137,7 @@ input:focus {
     }
 }
 
-/* ERROR TEXT (NO LAYOUT SHIFT) */
+/* ERROR TEXT */
 .error-text {
     min-height: 16px;
     font-size: 12px;
