@@ -5,6 +5,7 @@ import { Login } from './modules/auth/login/login';
 import { Dashboard } from './modules/business/dashboard/dashboard';
 import { FunderKyc } from './modules/funder/funder-kyc/funder-kyc';
 import { FunderKycConfirm } from './modules/funder/funder-kyc-confirm/funder-kyc-confirm';
+import { FunderDashboard } from './modules/funder/funder-dashboard/funder-dashboard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'entry', pathMatch: 'full' },
@@ -13,5 +14,6 @@ export const routes: Routes = [
     { path: 'login' , component: Login},
     { path: 'business-dashBoard' , component:Dashboard},
     { path: 'funder-kyc' , component:FunderKyc},
-    { path: 'funder-kyc/confirm' , component:FunderKycConfirm}
+    { path: 'funder-kyc/confirm' , component:FunderKycConfirm},
+    { path: 'funder-dashboard' , component:FunderDashboard}
 ];

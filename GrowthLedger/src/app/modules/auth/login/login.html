@@ -1,2 +1,44 @@
-<p>login works!</p>
-<h1>For {{loginFlag()}}</h1>
+<div class="login-container">
+  <div class="overlay"></div>
+
+  <div class="form-section">
+    <div class="form-wrapper">
+      <h2>Login</h2>
+      <!-- <p class="subtitle">
+        {{ loginFlag() === 'investing' ? 'Investor Login' : loginFlag() === 'accounting' ? 'Accounting Login' : 'Login to your account' }}
+      </p> -->
+
+      <form [formGroup]="loginForm" (ngSubmit)="relocateToDashboard()">
+        <!-- Email / Phone -->
+        <div class="form-field">
+          <label for="emailPhone">Email or Phone Number</label>
+          <input type="text" id="emailPhone" placeholder="Enter your email or phone number" formControlName="emailOrPhone" />
+           <span class="error-text">
+                @if (emailOrPhone?.touched && emailOrPhone?.errors?.['required']) {
+                         Email or Registered Phone Number is Required.
+                }
+           </span>
+        </div>
+
+        <!-- Password -->
+        <div class="form-field mt-4">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" formControlName="password"/>
+          <span class="error-text">
+                @if (password?.touched && password?.errors?.['required']) {
+                         Password is Required.
+                }
+           </span>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="primary-btn full-width-btn mt-5">Login</button>
+      </form>
+
+      <!-- Create Account -->
+      <p class="signup-text">
+        Don't have an account? <span class="signup-link" (click)="goTOSignUp()">Create one</span>
+      </p>
+    </div>
+  </div>
+</div>

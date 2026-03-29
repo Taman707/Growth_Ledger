@@ -1,18 +1,16 @@
 <div class="confirm-container">
+          <button class="edit-btn" (click)="goBack()">
+          Edit Info
+        </button>
 
   <div class="confirm-content">
 
     <!-- LEFT SIDE -->
     <div class="confirm-left">
 
-      <!-- EDIT BUTTON (TOP LEFT) -->
-      <button class="edit-btn">
-        <mat-icon>arrow_back</mat-icon> Edit Info
-      </button>
-
       <!-- SELFIE -->
       <div class="selfie-wrapper">
-        <img src="https://via.placeholder.com/150" alt="selfie">
+        <img src="https://www.shutterstock.com/image-photo/portrait-indian-male-stylish-hairstyle-260nw-2433953885.jpg" alt="selfie">
       </div>
 
       <p class="verify-text">Identity Verified</p>
@@ -24,6 +22,9 @@
 
       <div class="form-wrapper">
 
+        <!-- EDIT BUTTON TOP RIGHT -->
+
+
         <h2>Confirm Your Details</h2>
         <p class="subtitle">Please review your information before proceeding</p>
 
@@ -31,22 +32,22 @@
 
           <div class="info-row">
             <span>Name</span>
-            <strong>{{ basicInvestorInfo?.fullName }}</strong>
+            <strong>{{ kycInfo.name }}</strong>
           </div>
 
           <div class="info-row">
             <span>D.O.B</span>
-            <strong>{{ kycInfo?.dateOfBirth }}</strong>
+            <strong>{{ kycInfo.dateOfBirth }}</strong>
           </div>
 
           <div class="info-row">
             <span>Email</span>
-            <strong>{{ basicInvestorInfo?.email }}</strong>
+            <strong>{{ basicInvestorInfo.email }}</strong>
           </div>
 
           <div class="info-row">
             <span>Phone</span>
-            <strong>{{ basicInvestorInfo?.phoneNumber }}</strong>
+            <strong>{{ basicInvestorInfo.phoneNumber }}</strong>
           </div>
 
           <div class="info-row">
@@ -56,11 +57,13 @@
 
         </div>
 
-        <!-- ACTION BUTTON -->
-        <button class="submit-btn">
+      </div>
+
+      <!-- BUTTON OUTSIDE CARD -->
+      <div class="button-wrapper">
+        <button class="submit-btn" (click)="goToDashboard()">
           Confirm & Continue
         </button>
-
       </div>
 
     </div>
