@@ -42,6 +42,8 @@ export class FunderKyc {
     selfie : new FormControl('' , [Validators.required])
   })
 
+
+
   get fullN(){
     return this.kycFields.get('fullN');
   }
@@ -73,9 +75,16 @@ handleSubmit() {
     return;
   }
 
+  const kycData = {
+    name: this.kycFields.value.fullN,
+    dateOfBirth: this.kycFields.value.Dob
+  };
+  // agar component ke bahr ise banayege toh dikkat ye hogi ki jab component load hoga ye sirf tab hi run larega toh null rehjayenge dono
+
   this.router.navigate(['/funder-kyc/confirm'],{
     queryParams:{
-      basicInfo : JSON.stringify(this.receivedInvestorInformation)
+      basicInfo : JSON.stringify(this.receivedInvestorInformation),
+      kycSpecInfo : JSON.stringify(kycData)
     }
   })
 
