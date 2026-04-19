@@ -102,7 +102,7 @@ nextStep() {
           return;
     }
 
-    this.router.navigate(['business-dashBoard']);
+    this.router.navigate(['/business/dashboard']);
   }
 
   isStep1Valid(): boolean | undefined {
