@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-
+import { BusineessOwnerInfo } from '../../../shared/app-services/business-accounting/busineess-owner-info';
+import { BusinessOwner } from '../../../shared/models/business-owner.model';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -9,28 +10,24 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard {
+export class Dashboard implements OnInit{
+  constructor(
+    private businessOwnerInfo : BusineessOwnerInfo
+  ){}
 
-  userName = 'Tamanpreet';
+  ownerData!:BusinessOwner;
 
-  stats = [
-    { title: 'Total Funds Raised', value: '₹8,50,000', icon: 'account_balance_wallet' },
-    { title: 'Active Investors', value: '12', icon: 'groups' },
-    { title: 'Funding Requests', value: '3', icon: 'description' },
-    { title: 'Growth Rate', value: '+18%', icon: 'trending_up' }
-  ];
-
-  fundingProgress = 65;
-
-  requests = [
-    { title: 'Expand Retail Business', amount: '₹5,00,000', status: 'Active' },
-    { title: 'New Manufacturing Unit', amount: '₹12,00,000', status: 'Pending' }
-  ];
-
-  activities = [
-    'Investor Raj showed interest in your project',
-    'Funding request approved partially',
-    'New message from Investor Aman'
-  ];
+  ngOnInit(): void {
+    this.ownerData = {
+    ownerName: this.businessOwnerInfo.ownerName,
+    email: this.businessOwnerInfo.ownerEmail,
+    phoneNumber: this.businessOwnerInfo.ownerMobile,
+    password: this.businessOwnerInfo.ownerPassword,
+    businessAddress: this.businessOwnerInfo.businessAdress,
+    businessName: this.businessOwnerInfo.businessName,
+    gstinNumber: this.businessOwnerInfo.gstNumber,
+    businessType: this.businessOwnerInfo.businessType
+  };
+  }
 
 }

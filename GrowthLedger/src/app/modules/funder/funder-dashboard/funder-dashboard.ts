@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-
+import { InvestorInfo } from '../../../shared/app-services/investor/investor';
+import { Investor } from '../../../shared/models/investor.model'
 @Component({
   selector: 'app-funder-dashboard',
   standalone: true,
@@ -9,35 +10,19 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './funder-dashboard.html',
   styleUrl: './funder-dashboard.css',
 })
-export class FunderDashboard {
+export class FunderDashboard implements OnInit{
 
-  investorName = 'Investor';
+  investorData !: Investor;
+  constructor(
+    private InvestorInfoService : InvestorInfo
+  ){}
 
-businesses = [
-  {
-    name: 'GreenTech Solutions',
-    industry: 'Sustainability',
-    stage: 'Seed',
-    fundingNeeded: '₹10,00,000',
-    raisedAmount: '₹6,00,000',
-    raised: 60,
-    roi: '18% Expected',
-    risk: 'Medium',
-    location: 'Delhi',
-    description: 'Eco-friendly energy solutions for modern homes.'
-  },
-  {
-    name: 'QuickBite',
-    industry: 'Food & Delivery',
-    stage: 'Growth',
-    fundingNeeded: '₹5,00,000',
-    raisedAmount: '₹2,00,000',
-    raised: 40,
-    roi: '22% Expected',
-    risk: 'High',
-    location: 'Mumbai',
-    description: 'Fast and affordable food delivery startup.'
+  ngOnInit(){
+    this.investorData = {
+    fullName: this.InvestorInfoService.investorFullName,
+    email: this.InvestorInfoService.investorEmail,
+    phoneNumber: this.InvestorInfoService.investorMobile,
+    password: this.InvestorInfoService.investorPassword
+    }
   }
-];
-
 }

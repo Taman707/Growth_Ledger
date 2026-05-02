@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Investor } from '../../../shared/models/investor.model';
+import { InvestorInfo } from '../../../shared/app-services/investor/investor';
+import { BusineessOwnerInfo } from '../../../shared/app-services/business-accounting/busineess-owner-info';
 
 
 @Component({
@@ -14,7 +16,12 @@ import { Investor } from '../../../shared/models/investor.model';
 })
 export class SignUp {
 
-  constructor(private routes: ActivatedRoute,private router:Router) { };
+  constructor(
+    private routes: ActivatedRoute,
+    private router:Router,
+    private businessOwnerInfo:BusineessOwnerInfo,
+    private investorInfo:InvestorInfo
+  ) { };
 
   // class level variable for investor information storage
   investorInformation!: Investor;
@@ -102,6 +109,15 @@ nextStep() {
           return;
     }
 
+    // after validations are done , assign data to the service
+    this.businessOwnerInfo.businessName = this.SignUpFormBO.get('businessName')?.value;
+    this.businessOwnerInfo.ownerName = this.SignUpFormBO.get('ownerName')?.value;
+    this.businessOwnerInfo.ownerEmail = this.SignUpFormBO.get('email')?.value;
+    this.businessOwnerInfo.ownerMobile = this.SignUpFormBO.get('phoneNumber')?.value;
+    this.businessOwnerInfo.ownerPassword = this.SignUpFormBO.get('password')?.value;
+    this.businessOwnerInfo.businessType = this.SignUpFormBO.get('businessType')?.value;
+    this.businessOwnerInfo.gstNumber = this.SignUpFormBO.get('gstinNumber')?.value;
+    this.businessOwnerInfo.businessAdress = this.SignUpFormBO.get('businessAddress')?.value;
     this.router.navigate(['/business/dashboard']);
   }
 
@@ -166,7 +182,13 @@ showErr(){
       // show the error instead.
     }
     this.investorInformation = this.mapInvestorFormToModel();
+
+    this.investorInfo.investorFullName = this.investorInformation['fullName'];
+    this.investorInfo.investorEmail = this.investorInformation['email'];
+    this.investorInfo.investorMobile = this.investorInformation['phoneNumber'];
+    this.investorInfo.investorPassword = this.investorInformation['password'];
     console.log(this.investorInformation);
+
 
     this.router.navigate(['funder-kyc'],{
       queryParams:{

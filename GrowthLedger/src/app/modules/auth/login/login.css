@@ -7,7 +7,7 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #02150f, #071d16),
-                url('../../../../assets/loginBGImage.png') no-repeat center center;
+            url('/assets/loginBGImage.png') no-repeat center center;
     background-size: cover;
 }
 
