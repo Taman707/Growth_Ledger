@@ -3,41 +3,37 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { BusineessOwnerInfo } from '../../../shared/app-services/business-accounting/busineess-owner-info';
 import { BusinessOwner } from '../../../shared/models/business-owner.model';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, MatIconModule,FormsModule],
+  imports: [CommonModule, MatIconModule, FormsModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
 export class Dashboard implements OnInit {
 
-  constructor(private businessOwnerInfo: BusineessOwnerInfo) {}
+  constructor(
+    private businessOwnerInfo: BusineessOwnerInfo,
+    private router: Router
+  ) {}
 
-userNotes:string = '';
-notesSaved:boolean = false;
-
-saveNotes(){
-
-  localStorage.setItem('growthledger_notes', this.userNotes);
-
-  this.notesSaved = true;
-
-  setTimeout(() => {
-    this.notesSaved = false;
-  }, 2000);
-}
   ownerData!: BusinessOwner;
 
-  // ---------- USER STATE ----------
-  isNewUser:boolean = true; // later replace from API
-  totalEntries:number = 4;  // later replace from API
+  /* ---------- NOTES ---------- */
+  userNotes: string = '';
+  notesSaved: boolean = false;
 
-  // ---------- CALENDAR ----------
+  /* ---------- USER STATE ---------- */
+  isNewUser: boolean = true;
+  totalEntries: number = 4;
+
+  /* ---------- CALENDAR ---------- */
   monthNames = [
     'January','February','March','April','May','June',
     'July','August','September','October','November','December'
@@ -47,20 +43,20 @@ saveNotes(){
   currentMonth = this.currentDate.getMonth();
   currentYear = this.currentDate.getFullYear();
 
-  calendarDays:number[] = [];
-  selectedDay:number = 0;
-  showPopup:boolean = false;
+  calendarDays: number[] = [];
+  selectedDay: number = 0;
+  showPopup: boolean = false;
 
-  selectedDayData:any = {};
+  selectedDayData: any = {};
 
-  // ---------- HARDCODED ANALYTICS (API REPLACEABLE) ----------
+  /* ---------- ANALYTICS ---------- */
   monthlyIncoming = 242000;
   monthlyExpense = 118000;
   balance = 124000;
   investorReadiness = 74;
 
-  incomeTrend:number[] = [45, 60, 30, 75, 58, 90, 72];
-  expenseTrend:number[] = [35, 50, 42, 62, 48, 70, 40];
+  incomeTrend: number[] = [45, 60, 30, 75, 58, 90, 72];
+  expenseTrend: number[] = [35, 50, 42, 62, 48, 70, 40];
 
   insights = [
     {
@@ -79,13 +75,13 @@ saveNotes(){
       icon:'campaign',
       title:'Growth Tip',
       value:'Run weekend offers',
-      subtitle:'Sales peak on Friday/Saturday'
+      subtitle:'Sales peak on Fri / Sat'
     },
     {
       icon:'verified',
       title:'Investor Score',
       value:'74 / 100',
-      subtitle:'Complete KYC to improve score'
+      subtitle:'Complete KYC to improve'
     }
   ];
 
@@ -102,16 +98,55 @@ saveNotes(){
       businessType: this.businessOwnerInfo.businessType
     };
 
-    // dynamic user stage
     this.isNewUser = this.totalEntries < 7;
 
     this.generateCalendar();
 
     this.userNotes =
-localStorage.getItem('growthledger_notes') || '';
+      localStorage.getItem('growthledger_notes') || '';
+
+      const savedNotes = localStorage.getItem('growthledger_today_notes');
+
+if(savedNotes){
+  this.todayNotes = JSON.parse(savedNotes);
+}
   }
 
-  // ---------- CALENDAR ----------
+  /* ---------- NOTES ---------- */
+saveNotes(){
+
+  if(!this.noteInput.trim()) return;
+
+  this.todayNotes.push(this.noteInput);
+
+  localStorage.setItem(
+    'growthledger_today_notes',
+    JSON.stringify(this.todayNotes)
+  );
+
+  this.noteInput = '';
+
+  this.notesSaved = true;
+
+  setTimeout(()=>{
+    this.notesSaved = false;
+  },1500);
+}
+
+  /* ---------- NAV ---------- */
+goToLedger() {
+  this.showLedgerPopup = true;
+}
+closeLedgerPopup(){
+  this.showLedgerPopup = false;
+}
+
+openFullLedger(){
+  this.showLedgerPopup = false;
+  this.router.navigate(['/business/ledgerbook']);
+}
+
+  /* ---------- CALENDAR ---------- */
   generateCalendar() {
 
     this.calendarDays = [];
@@ -128,19 +163,20 @@ localStorage.getItem('growthledger_notes') || '';
       0
     ).getDate();
 
-    for(let i=0;i<firstDay;i++){
+    for (let i = 0; i < firstDay; i++) {
       this.calendarDays.push(0);
     }
 
-    for(let d=1; d<=totalDays; d++){
+    for (let d = 1; d <= totalDays; d++) {
       this.calendarDays.push(d);
     }
   }
 
-  nextMonth(){
+  nextMonth() {
+
     this.currentMonth++;
 
-    if(this.currentMonth > 11){
+    if (this.currentMonth > 11) {
       this.currentMonth = 0;
       this.currentYear++;
     }
@@ -148,10 +184,11 @@ localStorage.getItem('growthledger_notes') || '';
     this.generateCalendar();
   }
 
-  prevMonth(){
+  prevMonth() {
+
     this.currentMonth--;
 
-    if(this.currentMonth < 0){
+    if (this.currentMonth < 0) {
       this.currentMonth = 11;
       this.currentYear--;
     }
@@ -159,24 +196,46 @@ localStorage.getItem('growthledger_notes') || '';
     this.generateCalendar();
   }
 
-  openDayPopup(day:number){
+  openDayPopup(day: number) {
 
-    if(day === 0) return;
+    if (day === 0) return;
 
     this.selectedDay = day;
 
-    // later from API
     this.selectedDayData = {
       incoming: '₹12,500',
       outgoing: '₹4,200',
-      note: '2 ledger entries added'
+      note: '2 ledger entries added',
+      tasks: 'Supplier follow-up'
     };
 
     this.showPopup = true;
   }
 
-  closePopup(){
+  closePopup() {
     this.showPopup = false;
   }
 
+  noteInput:string = '';
+todayNotes:string[] = [];
+
+showLedgerPopup:boolean = false;
+
+recentLedger = [
+  {
+    title:'Customer Payment',
+    time:'10:20 AM',
+    amount:'+ ₹12,000'
+  },
+  {
+    title:'Packaging Expense',
+    time:'12:10 PM',
+    amount:'- ₹2,400'
+  },
+  {
+    title:'Online Order',
+    time:'2:40 PM',
+    amount:'+ ₹6,800'
+  }
+];
 }
