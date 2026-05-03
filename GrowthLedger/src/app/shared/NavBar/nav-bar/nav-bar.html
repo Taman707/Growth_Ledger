@@ -1,110 +1,48 @@
-<nav class="navbar navbar-expand-lg custom-navbar">
-  <div class="container-fluid">
+<!-- nav-bar.html -->
+<nav class="navbar">
 
-    <!-- LEFT: Logo -->
-    <a class="navbar-brand fw-bold d-flex align-items-center gap-2" routerLink="/business/dashboard">
-      <mat-icon class="logo-icon">insights</mat-icon>
-      GrowthLedger
-    </a>
-
-    <!-- Mobile Toggle -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarContent"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- NAV CONTENT -->
-    <div class="collapse navbar-collapse" id="navbarContent">
-
-      <!-- CENTER LINKS -->
-      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-3">
-
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-1"
-             routerLink="/business/dashboard"
-             routerLinkActive="active">
-            <mat-icon>dashboard</mat-icon>
-            <span>Dashboard</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-1"
-             routerLink="/business/funding"
-             routerLinkActive="active">
-            <mat-icon>account_balance</mat-icon>
-            <span>Funding</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-1"
-             routerLink="/business/investors"
-             routerLinkActive="active">
-            <mat-icon>groups</mat-icon>
-            <span>Investors</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center gap-1"
-             routerLink="/business/messages"
-             routerLinkActive="active">
-            <mat-icon>chat</mat-icon>
-            <span>Messages</span>
-          </a>
-        </li>
-
-      </ul>
-
-      <!-- RIGHT SIDE -->
-      <div class="d-flex align-items-center gap-3">
-
-        <!-- New Request Button -->
-        <button class="btn btn-primary d-flex align-items-center gap-1">
-          <mat-icon>add</mat-icon>
-          <span>New Request</span>
-        </button>
-
-        <!-- Notification -->
-        <button class="icon-btn">
-          <mat-icon>notifications</mat-icon>
-          <span class="badge-dot"></span>
-        </button>
-
-        <!-- Profile Menu -->
-        <button
-          mat-icon-button
-          [matMenuTriggerFor]="profileMenu"
-          class="profile-btn"
-        >
-          <mat-icon>account_circle</mat-icon>
-        </button>
-
-        <mat-menu #profileMenu="matMenu">
-          <button mat-menu-item>
-            <mat-icon>person</mat-icon>
-            <span>Profile</span>
-          </button>
-
-          <button mat-menu-item>
-            <mat-icon>verified_user</mat-icon>
-            <span>KYC Status</span>
-          </button>
-
-          <mat-divider></mat-divider>
-
-          <button mat-menu-item>
-            <mat-icon color="warn">logout</mat-icon>
-            <span class="text-danger">Logout</span>
-          </button>
-        </mat-menu>
-
-      </div>
-    </div>
+  <!-- LEFT LOGO -->
+  <div class="logo" routerLink="/business/dashboard">
+    GrowthLedger
   </div>
+
+  <!-- MOBILE MENU BUTTON -->
+  <button class="menu-btn" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- NAV CONTENT -->
+  <div class="nav-wrapper" [class.active]="menuOpen">
+
+    <!-- CENTER LINKS -->
+    <ul class="nav-links">
+      <li><a routerLink="/business/home" (click)="closeMenu()">Home</a></li>
+      <li><a routerLink="/business/ledgerbook" (click)="closeMenu()">LedgerBook</a></li>
+      <li><a routerLink="/business/dashboard" (click)="closeMenu()">Dashboard</a></li>
+      <li><a routerLink="/about" (click)="closeMenu()">About Us</a></li>
+    </ul>
+
+    <!-- RIGHT SIDE -->
+    <div class="right-section">
+
+      <!-- DYNAMIC CTA BUTTON -->
+      <button class="cta-btn" (click)="handleCTA()">
+        {{ kycDone ? 'Interested Investors' : 'Complete KYC' }}
+      </button>
+
+      <!-- NOTIFICATION -->
+      <button class="icon-btn">
+        <mat-icon>notifications</mat-icon>
+        <span class="dot"></span>
+      </button>
+
+      <!-- PROFILE -->
+      <button class="profile-btn">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+    </div>
+
+  </div>
+
 </nav>
