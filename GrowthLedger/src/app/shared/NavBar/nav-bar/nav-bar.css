@@ -196,3 +196,18 @@
     transform: translateY(0);
   }
 }
+
+/* Active Tab Highlight */
+.active-link {
+  color: #81c784 !important;
+  /* background: rgba(129, 199, 132, 0.12); */
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+/* smooth hover */
+.nav-links a {
+  padding: 10px 14px;
+  border-radius: 8px;
+}

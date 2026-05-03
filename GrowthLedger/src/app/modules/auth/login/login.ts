@@ -25,7 +25,7 @@ export class Login {
       return;
     }
     if(this.loginFlag() === 'accounting'){
-      this.router.navigate(['/business/dashboard']);
+      this.router.navigate(['/business/home']);
       return;
     }else{
       this.router.navigate(['funder-dashboard']);

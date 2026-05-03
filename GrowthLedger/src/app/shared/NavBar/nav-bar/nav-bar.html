@@ -2,7 +2,7 @@
 <nav class="navbar">
 
   <!-- LEFT LOGO -->
-  <div class="logo" routerLink="/business/dashboard">
+  <div class="logo" routerLink="/business/home">
     GrowthLedger
   </div>
 
@@ -15,11 +15,86 @@
   <div class="nav-wrapper" [class.active]="menuOpen">
 
     <!-- CENTER LINKS -->
-    <ul class="nav-links">
+    <!-- <ul class="nav-links">
       <li><a routerLink="/business/home" (click)="closeMenu()">Home</a></li>
       <li><a routerLink="/business/ledgerbook" (click)="closeMenu()">LedgerBook</a></li>
       <li><a routerLink="/business/dashboard" (click)="closeMenu()">Dashboard</a></li>
       <li><a routerLink="/about" (click)="closeMenu()">About Us</a></li>
+    </ul> -->
+
+    <!-- <ul class="nav-links">
+
+      <li>
+        <a routerLink="/business/home"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMenu()">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/business/ledgerbook"
+          routerLinkActive="active-link"
+          (click)="closeMenu()">
+          LedgerBook
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/business/dashboard"
+          routerLinkActive="active-link"
+          (click)="closeMenu()">
+          Dashboard
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/business/about"
+          routerLinkActive="active-link"
+          (click)="closeMenu()">
+          About Us
+        </a>
+      </li>
+
+    </ul> -->
+
+        <!-- NAV LINKS -->
+    <ul class="nav-links">
+
+      <li>
+        <a routerLink="/business/home"
+           routerLinkActive="active-link"
+           [routerLinkActiveOptions]="{ exact: true }"
+           (click)="closeMenu()">
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/business/dashboard"
+           routerLinkActive="active-link"
+           (click)="closeMenu()">
+          Dashboard
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/business/investor-contact"
+           routerLinkActive="active-link"
+           (click)="closeMenu()">
+          Investors
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="/business/about-us"
+           routerLinkActive="active-link"
+           (click)="closeMenu()">
+          About Us
+        </a>
+      </li>
+
     </ul>
 
     <!-- RIGHT SIDE -->

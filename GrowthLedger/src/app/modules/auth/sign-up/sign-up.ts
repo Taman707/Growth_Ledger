@@ -118,7 +118,7 @@ nextStep() {
     this.businessOwnerInfo.businessType = this.SignUpFormBO.get('businessType')?.value;
     this.businessOwnerInfo.gstNumber = this.SignUpFormBO.get('gstinNumber')?.value;
     this.businessOwnerInfo.businessAdress = this.SignUpFormBO.get('businessAddress')?.value;
-    this.router.navigate(['/business/dashboard']);
+    this.router.navigate(['/business/home']);
   }
 
   isStep1Valid(): boolean | undefined {

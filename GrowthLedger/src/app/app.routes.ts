@@ -8,6 +8,9 @@ import { BusinessLayout } from './shared/layouts/business-layout/business-layout
 import { FunderKyc } from './modules/funder/funder-kyc/funder-kyc';
 import { FunderKycConfirm } from './modules/funder/funder-kyc-confirm/funder-kyc-confirm';
 import { FunderDashboard } from './modules/funder/funder-dashboard/funder-dashboard';
+import { AboutUs } from './shared/common-about-us/about-us/about-us';
+import { InvestorContact } from './modules/business/investor-window/investor-contact/investor-contact';
+import { AnalysisDash } from './modules/business/analysis-dashboard/analysis-dash/analysis-dash';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'entry', pathMatch: 'full' },
@@ -22,11 +25,11 @@ export const routes: Routes = [
     path: 'business',
     component: BusinessLayout,
     children: [
-      { path: 'dashboard', component: Dashboard },
-      // future routes:
-      // { path: 'funding', component: Funding },
-      // { path: 'investors', component: Investors },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+      { path: 'home', component: Dashboard },
+      { path: 'about-us' , component: AboutUs},
+      { path: 'dashboard', component: AnalysisDash},
+      { path: 'investor-contact', component: InvestorContact},
+      { path: '', redirectTo: 'home', pathMatch: 'full' }
     ]
   },
 

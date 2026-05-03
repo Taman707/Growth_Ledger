@@ -1,12 +1,12 @@
 // nav-bar.ts
 
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [MatIconModule],
+  imports: [MatIconModule,RouterModule],
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.css'
 })
