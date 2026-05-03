@@ -1,9 +1,301 @@
-<h1>Information is</h1>
-<h1>{{ownerData.ownerName}}</h1>
-<h1>{{ownerData.email}}</h1>
-<h1>{{ownerData.ownerName}}</h1>
-<h1>{{ownerData.password}}</h1>
-<h1>{{ownerData.businessAddress}}</h1>
-<h1>{{ownerData.businessName}}</h1>
-<h1>{{ownerData.gstinNumber}}</h1>
-<h1>{{ownerData.businessType}}</h1>
+<!-- dashboard.html -->
+
+<div class="home-page">
+
+  <!-- TOP SECTION -->
+  <section class="top-grid">
+
+    <!-- HERO -->
+    <div class="hero-card">
+
+      <p class="tag">
+        {{ isNewUser ? 'Welcome To GrowthLedger 🚀' : 'Welcome Back 👋' }}
+      </p>
+
+      <h1>{{ ownerData.ownerName }}</h1>
+
+      <h2>{{ ownerData.businessName }}</h2>
+
+      <p class="hero-text" *ngIf="isNewUser">
+        Start building a stronger financial record. Add transactions,
+        complete your setup and unlock smarter growth insights.
+      </p>
+
+      <p class="hero-text" *ngIf="!isNewUser">
+        Your business data is growing well. Stay investor-ready and track
+        performance with smart insights.
+      </p>
+
+      <div class="hero-stats">
+
+        <div class="stat-box">
+          <span>{{ totalEntries }}</span>
+          <small>Ledger Entries</small>
+        </div>
+
+        <div class="stat-box">
+          <span>{{ investorReadiness }}%</span>
+          <small>Readiness Score</small>
+        </div>
+
+        <div class="stat-box">
+          <span>{{ isNewUser ? 'Step 1' : 'Active' }}</span>
+          <small>Status</small>
+        </div>
+
+      </div>
+
+      <div class="hero-btns">
+
+        <button>
+          {{ isNewUser ? 'Complete Setup' : 'Interested Investors' }}
+        </button>
+
+        <button class="light-btn">
+          {{ isNewUser ? 'Learn More' : 'View Insights' }}
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- CALENDAR -->
+    <div class="calendar-card">
+
+      <div class="calendar-head">
+
+        <button (click)="prevMonth()">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+
+        <h3>{{ monthNames[currentMonth] }} {{ currentYear }}</h3>
+
+        <button (click)="nextMonth()">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+
+      </div>
+
+      <div class="week-days">
+        <span>Su</span>
+        <span>Mo</span>
+        <span>Tu</span>
+        <span>We</span>
+        <span>Th</span>
+        <span>Fr</span>
+        <span>Sa</span>
+      </div>
+
+      <div class="dates-grid">
+
+        <div
+          *ngFor="let day of calendarDays"
+          class="day-box"
+          [class.empty]="day===0"
+          [class.active]="selectedDay===day"
+          (click)="openDayPopup(day)"
+        >
+          {{ day === 0 ? '' : day }}
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ANALYTICS -->
+  <section class="finance-grid">
+
+    <!-- INCOME -->
+    <div class="finance-card green">
+
+      <div class="card-head">
+        <mat-icon>trending_up</mat-icon>
+        <h3>Total Incoming</h3>
+      </div>
+
+      <p>₹{{ monthlyIncoming | number }}</p>
+
+      <div class="mini-chart">
+
+        <div
+          *ngFor="let item of incomeTrend"
+          class="bar income-bar"
+          [style.height.px]="item"
+        ></div>
+
+      </div>
+
+      <small>Last 7 days trend</small>
+
+    </div>
+
+
+    <!-- EXPENSE -->
+    <div class="finance-card red">
+
+      <div class="card-head">
+        <mat-icon>payments</mat-icon>
+        <h3>Total Expenses</h3>
+      </div>
+
+      <p>₹{{ monthlyExpense | number }}</p>
+
+      <div class="mini-chart">
+
+        <div
+          *ngFor="let item of expenseTrend"
+          class="bar expense-bar"
+          [style.height.px]="item"
+        ></div>
+
+      </div>
+
+      <small>Last 7 days spend pattern</small>
+
+    </div>
+
+
+    <!-- AI CARD -->
+    <div class="finance-card blue">
+
+      <div class="card-head">
+        <mat-icon>auto_awesome</mat-icon>
+        <h3>AI Suggestion</h3>
+      </div>
+
+      <p class="small-main">₹{{ balance | number }} surplus available</p>
+
+      <ul class="tip-list">
+        <li>35% stock reinvestment</li>
+        <li>20% digital marketing</li>
+        <li>Keep reserve buffer</li>
+      </ul>
+
+      <small>Based on current cashflow</small>
+
+    </div>
+
+  </section>
+
+
+  <!-- BUSINESS INSIGHTS -->
+  <section class="insights-section">
+
+    <div class="section-head">
+      <h2>Business Insights</h2>
+      <p>Useful metrics generated from your ledger activity</p>
+    </div>
+
+    <div class="insight-grid">
+
+      <div class="insight-card" *ngFor="let item of insights">
+
+        <mat-icon>{{ item.icon }}</mat-icon>
+
+        <h4>{{ item.title }}</h4>
+
+        <h3>{{ item.value }}</h3>
+
+        <p>{{ item.subtitle }}</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+<!-- LEDGER + NOTES -->
+<section class="tools-grid">
+
+  <!-- LEDGER -->
+  <div class="tool-card ledger-tool">
+
+    <div class="tool-head">
+      <h2>Recent Ledger Entries</h2>
+      <button class="mini-btn">View All</button>
+    </div>
+
+    <div class="ledger-list">
+
+      <div class="ledger-row">
+        <div>
+          <h4>Customer Payment</h4>
+          <small>Today • 10:30 AM</small>
+        </div>
+        <span class="plus">+ ₹12,000</span>
+      </div>
+
+      <div class="ledger-row">
+        <div>
+          <h4>Supplier Expense</h4>
+          <small>Yesterday • 4:00 PM</small>
+        </div>
+        <span class="minus">- ₹4,500</span>
+      </div>
+
+      <div class="ledger-row">
+        <div>
+          <h4>Online Sale</h4>
+          <small>Yesterday • 1:20 PM</small>
+        </div>
+        <span class="plus">+ ₹6,200</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- NOTES -->
+  <div class="tool-card notes-tool">
+
+    <div class="tool-head">
+      <h2>Quick Notes</h2>
+      <button class="mini-btn" (click)="saveNotes()">Save</button>
+    </div>
+
+    <textarea
+      [(ngModel)]="userNotes"
+      placeholder="Write payment reminders, tasks, stock updates..."
+    ></textarea>
+
+    <small class="saved-text" *ngIf="notesSaved">
+      Notes saved successfully ✓
+    </small>
+
+  </div>
+
+</section>
+  <!-- POPUP -->
+  <div class="popup-overlay" *ngIf="showPopup">
+
+    <div class="popup-box">
+
+      <div class="popup-head">
+
+        <h3>{{ selectedDay }} {{ monthNames[currentMonth] }}</h3>
+
+        <button (click)="closePopup()">
+          <mat-icon>close</mat-icon>
+        </button>
+
+      </div>
+
+      <div class="popup-content">
+
+        <p><strong>Incoming:</strong> {{ selectedDayData.incoming }}</p>
+
+        <p><strong>Outgoing:</strong> {{ selectedDayData.outgoing }}</p>
+
+        <p><strong>Highlight:</strong> {{ selectedDayData.note }}</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
