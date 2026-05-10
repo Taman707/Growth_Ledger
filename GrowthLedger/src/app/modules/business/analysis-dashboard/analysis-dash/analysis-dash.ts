@@ -78,15 +78,26 @@ export class AnalysisDash {
     return Math.max(...this.chartData);
   }
 
-  get linePoints(): string {
-    const width = 100;
-    const height = 220;
+get linePoints(): string {
 
-    return this.chartData.map((val, i) => {
-      const x = (i / (this.chartData.length - 1)) * width;
-      const y = height - (val / this.maxValue) * height;
-      return `${x},${y}`;
-    }).join(' ');
-  }
+  const width = 600;
+  const height = 220;
+  const paddingX = 25;
+  const usableWidth = width - (paddingX * 2);
+
+  return this.chartData.map((val, i) => {
+
+    const x =
+      paddingX +
+      (i / (this.chartData.length - 1)) * usableWidth;
+
+    const y =
+      height -
+      (val / this.maxValue) * 170;
+
+    return `${x},${y}`;
+
+  }).join(' ');
+}
 
 }

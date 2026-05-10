@@ -103,37 +103,41 @@
       </div>
 
       <!-- LINE CHART -->
-      <div
-        class="line-wrap"
-        *ngIf="chartType==='line'"
-      >
+      <div class="line-wrap" *ngIf="chartType==='line'">
+<div class="line-wrap" *ngIf="chartType==='line'">
 
-        <svg viewBox="0 0 100 220" preserveAspectRatio="none">
+<svg viewBox="0 0 600 240" preserveAspectRatio="none">
 
-          <polyline
-            [attr.points]="linePoints"
-            fill="none"
-            stroke="#2e7d32"
-            stroke-width="2"
-          ></polyline>
+<!-- AREA -->
+<polygon
+[attr.points]="linePoints + ' 575,220 25,220'"
+fill="url(#areaFill)">
+</polygon>
 
-          <circle
-            *ngFor="let item of chartData; let i=index"
-            [attr.cx]="(i/(chartData.length-1))*100"
-            [attr.cy]="220-(item/maxValue)*220"
-            r="1.8"
-            fill="#2e7d32"
-          ></circle>
+<!-- LINE -->
+<polyline
+[attr.points]="linePoints"
+class="main-line">
+</polyline>
 
-        </svg>
+<!-- DOTS -->
+<circle
+*ngFor="let item of chartData; let i=index"
+[attr.cx]="25 + (i/(chartData.length-1))*550"
+[attr.cy]="220-(item/maxValue)*170"
+r="4"
+class="point-dot">
+</circle>
 
-        <div class="line-labels">
-          <small *ngFor="let item of chartLabels">
-            {{ item }}
-          </small>
-        </div>
+</svg>
 
-      </div>
+<div class="line-labels">
+<small *ngFor="let item of chartLabels">
+{{ item }}
+</small>
+</div>
+
+</div>
 
     </div>
 
