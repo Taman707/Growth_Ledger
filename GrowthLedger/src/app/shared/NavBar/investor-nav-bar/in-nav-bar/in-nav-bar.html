@@ -1,0 +1,67 @@
+<!-- in-nav-bar.html -->
+
+<nav class="navbar">
+
+  <!-- LOGO -->
+  <div class="logo" routerLink="/investor/home">
+    GrowthLedger
+  </div>
+
+  <!-- MOBILE BTN -->
+  <button class="menu-btn" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- NAV CONTENT -->
+  <div class="nav-wrapper" [class.active]="menuOpen">
+
+    <!-- LINKS -->
+    <ul class="nav-links">
+
+      <li>
+        <a
+          routerLink="/investor/home"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact:true }"
+          (click)="closeMenu()"
+        >
+          Home
+        </a>
+      </li>
+
+      <li>
+        <a
+          routerLink="/business/about-us"
+          routerLinkActive="active-link"
+          (click)="closeMenu()"
+        >
+          About Us
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- RIGHT -->
+    <div class="right-section">
+
+      <!-- KYC STATUS -->
+      <div class="kyc-badge" [class.done]="kycDone">
+        {{ kycDone ? 'KYC Done' : 'KYC Pending' }}
+      </div>
+
+      <!-- NOTIFICATION -->
+      <button class="icon-btn">
+        <mat-icon>notifications</mat-icon>
+        <span class="dot"></span>
+      </button>
+
+      <!-- PROFILE -->
+      <button class="profile-btn">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+    </div>
+
+  </div>
+
+</nav>

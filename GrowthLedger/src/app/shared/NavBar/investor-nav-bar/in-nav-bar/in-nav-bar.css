@@ -1,0 +1,218 @@
+/* in-nav-bar.css */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* NAVBAR */
+.navbar{
+  width:100%;
+  padding:14px 28px;
+  background:rgba(13,31,22,.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #1b3a2a;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+/* LOGO */
+.logo{
+  font-size:24px;
+  font-weight:700;
+  color:#81c784;
+  cursor:pointer;
+  letter-spacing:.4px;
+}
+
+/* WRAP */
+.nav-wrapper{
+  flex:1;
+  margin-left:45px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* LINKS */
+.nav-links{
+  list-style:none;
+  display:flex;
+  gap:26px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#fff;
+  font-size:15px;
+  font-weight:500;
+  padding:10px 14px;
+  border-radius:8px;
+  transition:.25s;
+}
+
+.nav-links a:hover{
+  color:#81c784;
+}
+
+/* ACTIVE */
+.active-link{
+  color:#81c784 !important;
+  font-weight:600;
+}
+
+/* RIGHT */
+.right-section{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+/* KYC */
+.kyc-badge{
+  padding:10px 16px;
+  border-radius:24px;
+  font-size:14px;
+  font-weight:700;
+  background:#fff3e0;
+  color:#ef6c00;
+}
+
+.kyc-badge.done{
+  background:#eaf6ec;
+  color:#1b5e20;
+}
+
+/* ICONS */
+.icon-btn,
+.profile-btn,
+.menu-btn{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:.25s;
+  position:relative;
+}
+
+.icon-btn:hover,
+.profile-btn:hover,
+.menu-btn:hover{
+  background:rgba(255,255,255,.12);
+}
+
+/* RED DOT */
+.dot{
+  position:absolute;
+  top:9px;
+  right:10px;
+  width:8px;
+  height:8px;
+  background:#ff5252;
+  border-radius:50%;
+}
+
+/* MOBILE BTN */
+.menu-btn{
+  display:none;
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:900px){
+
+  .menu-btn{
+    display:flex;
+  }
+
+  .nav-wrapper{
+    position:absolute;
+    top:74px;
+    left:0;
+    width:100%;
+    margin-left:0;
+
+    background:rgba(13,31,22,.97);
+    backdrop-filter:blur(12px);
+
+    display:none;
+    flex-direction:column;
+    gap:24px;
+
+    padding:22px;
+    border-top:1px solid #1b3a2a;
+  }
+
+  .nav-wrapper.active{
+    display:flex;
+    animation:fadeDown .28s ease;
+  }
+
+  .nav-links{
+    width:100%;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .nav-links li{
+    width:100%;
+  }
+
+  .nav-links a{
+    display:block;
+    text-align:center;
+    background:rgba(255,255,255,.03);
+  }
+
+  .right-section{
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+}
+
+@media(max-width:480px){
+
+  .navbar{
+    padding:12px 16px;
+  }
+
+  .logo{
+    font-size:22px;
+  }
+
+  .kyc-badge{
+    width:100%;
+    text-align:center;
+  }
+
+}
+
+/* ANIM */
+@keyframes fadeDown{
+  from{
+    opacity:0;
+    transform:translateY(-12px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
