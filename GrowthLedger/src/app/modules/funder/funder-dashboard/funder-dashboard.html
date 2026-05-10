@@ -1,5 +1,230 @@
-<h1>INvestor INformation :</h1>
-<h1>{{investorData.fullName}}</h1>
-<h1>{{investorData.email}}</h1>
-<h1>{{investorData.phoneNumber}}</h1>
-<h1>{{investorData.password}}</h1>
+<!-- funder-dashboard.html -->
+
+<div class="investor-page">
+
+  <!-- TOP HERO -->
+  <section class="hero-card">
+
+    <div class="hero-left">
+      <p class="tag">Welcome Back Investor 🚀</p>
+
+      <h1>{{ investorData.fullName }}</h1>
+
+      <p class="sub-text">
+        Explore growth-ready businesses, connect with founders and make smart funding decisions.
+      </p>
+
+      <div class="hero-stats">
+
+        <div class="stat-box">
+          <span>18</span>
+          <small>Businesses Matched</small>
+        </div>
+
+        <div class="stat-box">
+          <span>7</span>
+          <small>Offers Sent</small>
+        </div>
+
+        <div class="stat-box">
+          <span>₹42L</span>
+          <small>Capital Planned</small>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="hero-right">
+
+      <div class="score-card">
+        <small>Investor Score</small>
+        <h2>89 / 100</h2>
+        <p>Strong profile visibility</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FILTER -->
+  <section class="filter-bar">
+
+    <button class="active">All</button>
+    <button>Retail</button>
+    <button>Manufacturing</button>
+    <button>Food</button>
+    <button>Tech</button>
+
+  </section>
+
+
+  <!-- BUSINESS CARDS -->
+  <section class="business-grid">
+
+    <!-- CARD 1 -->
+    <div class="business-card">
+
+      <div class="card-top">
+        <div>
+          <h2>Punjab Fresh Mart</h2>
+          <p>Retail Grocery • Chandigarh</p>
+        </div>
+
+        <span class="badge green">Verified</span>
+      </div>
+
+      <div class="mini-stats">
+        <div>
+          <small>Revenue</small>
+          <strong>₹9.2L/mo</strong>
+        </div>
+
+        <div>
+          <small>Growth</small>
+          <strong>+28%</strong>
+        </div>
+
+        <div>
+          <small>Funding Need</small>
+          <strong>₹18L</strong>
+        </div>
+      </div>
+
+      <p class="desc">
+        Expanding to second outlet. Strong repeat customers and healthy margins.
+      </p>
+
+      <div class="action-row">
+        <button>Contact</button>
+        <button class="light">Meeting</button>
+        <button class="dark">Make Offer</button>
+      </div>
+
+    </div>
+
+
+    <!-- CARD 2 -->
+    <div class="business-card">
+
+      <div class="card-top">
+        <div>
+          <h2>Urban Threads</h2>
+          <p>Fashion Brand • Mohali</p>
+        </div>
+
+        <span class="badge blue">Trending</span>
+      </div>
+
+      <div class="mini-stats">
+        <div>
+          <small>Revenue</small>
+          <strong>₹14L/mo</strong>
+        </div>
+
+        <div>
+          <small>Growth</small>
+          <strong>+44%</strong>
+        </div>
+
+        <div>
+          <small>Funding Need</small>
+          <strong>₹30L</strong>
+        </div>
+      </div>
+
+      <p class="desc">
+        Rapid online growth with strong branding and repeat sales momentum.
+      </p>
+
+      <div class="action-row">
+        <button>Contact</button>
+        <button class="light">Meeting</button>
+        <button class="dark">Make Offer</button>
+      </div>
+
+    </div>
+
+
+    <!-- CARD 3 -->
+    <div class="business-card">
+
+      <div class="card-top">
+        <div>
+          <h2>QuickByte Tech</h2>
+          <p>SaaS Startup • Bangalore</p>
+        </div>
+
+        <span class="badge orange">High ROI</span>
+      </div>
+
+      <div class="mini-stats">
+        <div>
+          <small>Revenue</small>
+          <strong>₹6L/mo</strong>
+        </div>
+
+        <div>
+          <small>Growth</small>
+          <strong>+61%</strong>
+        </div>
+
+        <div>
+          <small>Funding Need</small>
+          <strong>₹55L</strong>
+        </div>
+      </div>
+
+      <p class="desc">
+        B2B software startup with subscription retention and scalable model.
+      </p>
+
+      <div class="action-row">
+        <button>Contact</button>
+        <button class="light">Meeting</button>
+        <button class="dark">Make Offer</button>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INSIGHTS -->
+  <section class="bottom-grid">
+
+    <div class="info-card">
+      <h3>AI Suggestions</h3>
+
+      <ul>
+        <li>Retail sector shows consistent low-risk growth.</li>
+        <li>Fashion startups gaining seasonal traction.</li>
+        <li>SaaS businesses offer highest scalability.</li>
+        <li>Diversify capital into 2-3 sectors.</li>
+      </ul>
+    </div>
+
+    <div class="info-card">
+      <h3>Recent Activity</h3>
+
+      <div class="activity">
+        <span>Offer Sent</span>
+        <small>Urban Threads</small>
+      </div>
+
+      <div class="activity">
+        <span>Meeting Scheduled</span>
+        <small>Punjab Fresh Mart</small>
+      </div>
+
+      <div class="activity">
+        <span>New Match Added</span>
+        <small>QuickByte Tech</small>
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

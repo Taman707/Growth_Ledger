@@ -11,6 +11,7 @@ import { FunderDashboard } from './modules/funder/funder-dashboard/funder-dashbo
 import { AboutUs } from './shared/common-about-us/about-us/about-us';
 import { InvestorContact } from './modules/business/investor-window/investor-contact/investor-contact';
 import { AnalysisDash } from './modules/business/analysis-dashboard/analysis-dash/analysis-dash';
+import { InvestorLayout } from './shared/layouts/investor-layout-framework/investor-layout/investor-layout';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'entry', pathMatch: 'full' },
@@ -36,5 +37,26 @@ export const routes: Routes = [
   // FUNDER FLOW
   { path: 'funder-kyc', component: FunderKyc },
   { path: 'funder-kyc/confirm', component: FunderKycConfirm },
-  { path: 'funder-dashboard', component: FunderDashboard }
+
+
+{
+  path: 'investor',
+  component: InvestorLayout,
+  children: [
+
+    {
+      path: '',
+      redirectTo: 'funder-dashboard',
+      pathMatch: 'full'
+    },
+
+    {
+      path: 'funder-dashboard',
+      component: FunderDashboard
+    },
+    { path: 'about-us' , component: AboutUs},
+
+
+  ]
+}
 ];

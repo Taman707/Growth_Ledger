@@ -1,0 +1,292 @@
+/* funder-dashboard.css */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.investor-page{
+  padding:24px;
+  background:#f7faf8;
+  min-height:100vh;
+}
+
+/* HERO */
+.hero-card{
+  display:grid;
+  grid-template-columns:1.4fr .8fr;
+  gap:22px;
+  background:#fff;
+  border-radius:24px;
+  padding:28px;
+  box-shadow:0 12px 35px rgba(0,0,0,.06);
+}
+
+.tag{
+  color:#2e7d32;
+  font-weight:700;
+}
+
+.hero-left h1{
+  margin-top:10px;
+  font-size:34px;
+  color:#132319;
+}
+
+.sub-text{
+  margin-top:12px;
+  color:#6f8075;
+  line-height:1.7;
+}
+
+.hero-stats{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.stat-box{
+  background:#f7faf8;
+  padding:18px;
+  border-radius:18px;
+}
+
+.stat-box span{
+  display:block;
+  font-size:22px;
+  font-weight:700;
+  color:#1b5e20;
+}
+
+.stat-box small{
+  color:#718178;
+}
+
+.score-card{
+  height:100%;
+  background:linear-gradient(135deg,#2e7d32,#43a047);
+  color:#fff;
+  border-radius:22px;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.score-card h2{
+  margin:10px 0;
+  font-size:34px;
+}
+
+/* FILTER */
+.filter-bar{
+  margin-top:24px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.filter-bar button{
+  border:none;
+  padding:10px 16px;
+  border-radius:24px;
+  background:#fff;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.filter-bar .active{
+  background:#2e7d32;
+  color:#fff;
+}
+
+/* BUSINESS */
+.business-grid{
+  margin-top:24px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.business-card{
+  background:#fff;
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 12px 35px rgba(0,0,0,.06);
+}
+
+.card-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.card-top h2{
+  font-size:22px;
+  color:#132319;
+}
+
+.card-top p{
+  color:#6f8075;
+  margin-top:6px;
+}
+
+.badge{
+  padding:8px 12px;
+  border-radius:18px;
+  font-size:12px;
+  font-weight:700;
+  height:fit-content;
+}
+
+.green{background:#eaf6ec;color:#1b5e20;}
+.blue{background:#e8f2ff;color:#1565c0;}
+.orange{background:#fff3e0;color:#ef6c00;}
+
+.mini-stats{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.mini-stats div{
+  background:#f7faf8;
+  padding:12px;
+  border-radius:14px;
+}
+
+.mini-stats small{
+  color:#6f8075;
+}
+
+.mini-stats strong{
+  display:block;
+  margin-top:6px;
+}
+
+.desc{
+  margin-top:16px;
+  color:#607067;
+  line-height:1.7;
+}
+
+.action-row{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:10px;
+}
+
+.action-row button{
+  border:none;
+  padding:12px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:600;
+  background:#eaf6ec;
+  color:#1b5e20;
+}
+
+.action-row .light{
+  background:#eef4ef;
+}
+
+.action-row .dark{
+  background:#2e7d32;
+  color:#fff;
+}
+
+/* BOTTOM */
+.bottom-grid{
+  margin-top:24px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+}
+
+.info-card{
+  background:#fff;
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 12px 35px rgba(0,0,0,.06);
+}
+
+.info-card h3{
+  margin-bottom:18px;
+  color:#132319;
+}
+
+.info-card ul{
+  padding-left:18px;
+  line-height:2;
+  color:#607067;
+}
+
+.activity{
+  background:#f7faf8;
+  padding:14px;
+  border-radius:14px;
+  margin-bottom:12px;
+}
+
+.activity span{
+  display:block;
+  font-weight:700;
+  color:#132319;
+}
+
+.activity small{
+  color:#6f8075;
+}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+
+.hero-card,
+.bottom-grid{
+  grid-template-columns:1fr;
+}
+
+.business-grid{
+  grid-template-columns:1fr 1fr;
+}
+
+}
+
+@media(max-width:768px){
+
+.investor-page{
+  padding:14px;
+}
+
+.hero-stats,
+.business-grid{
+  grid-template-columns:1fr;
+}
+
+.mini-stats{
+  grid-template-columns:1fr;
+}
+
+.action-row{
+  grid-template-columns:1fr;
+}
+
+.hero-left h1{
+  font-size:28px;
+}
+
+}
+
+@media(max-width:480px){
+
+.business-card,
+.hero-card,
+.info-card{
+  padding:18px;
+}
+
+}

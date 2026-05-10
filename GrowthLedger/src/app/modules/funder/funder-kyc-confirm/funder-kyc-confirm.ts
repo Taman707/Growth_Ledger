@@ -38,6 +38,6 @@ export class FunderKycConfirm {
   });
 }
   goToDashboard(){
-    this.router.navigate(['funder-dashboard']);
+    this.router.navigate(['investor']);
   }
 }
