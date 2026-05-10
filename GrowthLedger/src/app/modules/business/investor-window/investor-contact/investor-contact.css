@@ -1,0 +1,116 @@
+.investor-page{
+  padding:25px;
+  background:#f7faf8;
+  min-height:100vh;
+}
+
+/* COMMON */
+.main-card,
+.lock-card{
+  background:#fff;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 12px 35px rgba(0,0,0,.06);
+}
+
+/* KYC LOCK */
+.kyc-lock{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:80vh;
+}
+
+.lock-card{
+  max-width:700px;
+  width:100%;
+}
+
+.lock-card h2{
+  color:#1b5e20;
+  font-weight:700;
+}
+
+.lock-card p{
+  color:#6c7d73;
+  margin-top:12px;
+  line-height:1.7;
+}
+
+.mini-box{
+  background:#edf8ef;
+  padding:16px;
+  border-radius:14px;
+  font-weight:600;
+  color:#1b5e20;
+}
+
+/* DONE */
+.top-head h2{
+  color:#1b5e20;
+  font-weight:700;
+}
+
+.top-head p{
+  color:#6d7e74;
+  margin-bottom:24px;
+}
+
+.investor-card{
+  background:#f8fbf9;
+  border-radius:16px;
+  padding:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.investor-card h5{
+  margin:0;
+}
+
+.investor-card small{
+  color:#6d7e74;
+}
+
+.investor-card p{
+  margin:0;
+  color:#2e7d32;
+}
+
+label{
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.form-control{
+  border-radius:12px;
+  padding:12px;
+}
+
+.btn-success{
+  background:#2e7d32;
+  border:none;
+  border-radius:12px;
+  padding:12px;
+}
+
+@media(max-width:768px){
+
+.investor-page{
+  padding:14px;
+}
+
+.main-card,
+.lock-card{
+  padding:20px;
+}
+
+.investor-card{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+}
+
+}

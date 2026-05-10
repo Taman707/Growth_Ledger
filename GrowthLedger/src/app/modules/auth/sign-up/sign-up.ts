@@ -118,6 +118,7 @@ nextStep() {
     this.businessOwnerInfo.businessType = this.SignUpFormBO.get('businessType')?.value;
     this.businessOwnerInfo.gstNumber = this.SignUpFormBO.get('gstinNumber')?.value;
     this.businessOwnerInfo.businessAdress = this.SignUpFormBO.get('businessAddress')?.value;
+    this.businessOwnerInfo.kycStatus = false;
     this.router.navigate(['/business/home']);
   }
 

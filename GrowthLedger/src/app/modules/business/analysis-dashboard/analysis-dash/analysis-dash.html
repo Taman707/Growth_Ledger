@@ -1,1 +1,247 @@
-<p>analysis-dash works!</p>
+<!-- analysis-dash.html -->
+
+<div class="analysis-page">
+
+  <!-- HEADER -->
+  <div class="page-head">
+    <div>
+      <h1>Business Analytics</h1>
+      <p>Track performance, compare growth & make smarter decisions.</p>
+    </div>
+
+    <div class="head-badge">
+      Live Mock Insights
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-wrap">
+
+    <!-- TIME -->
+    <div class="filter-box">
+      <label>Timeline</label>
+
+      <select [(ngModel)]="selectedTime">
+        <option
+          *ngFor="let item of timeOptions"
+          [value]="item.value"
+        >
+          {{ item.label }}
+        </option>
+      </select>
+    </div>
+
+    <!-- METRIC -->
+    <div class="filter-box">
+      <label>Metric</label>
+
+      <select [(ngModel)]="selectedMetric">
+        <option
+          *ngFor="let item of metricOptions"
+          [value]="item.value"
+        >
+          {{ item.label }}
+        </option>
+      </select>
+    </div>
+
+    <!-- CHART TYPE -->
+    <div class="filter-box">
+      <label>View</label>
+
+      <div class="toggle-wrap">
+
+        <button
+          [class.active]="chartType==='bar'"
+          (click)="chartType='bar'"
+        >
+          Bar
+        </button>
+
+        <button
+          [class.active]="chartType==='line'"
+          (click)="chartType='line'"
+        >
+          Line
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+
+    <!-- GRAPH -->
+    <div class="chart-card">
+
+      <div class="card-head">
+        <h2>{{ selectedMetric | titlecase }}</h2>
+        <span>{{ selectedTime | titlecase }} View</span>
+      </div>
+
+      <!-- BAR CHART -->
+      <div
+        class="bar-chart"
+        *ngIf="chartType==='bar'"
+      >
+
+        <div
+          class="bar-col"
+          *ngFor="let item of chartData; let i=index"
+        >
+          <div
+            class="bar"
+            [style.height.%]="(item/maxValue)*100"
+          ></div>
+
+          <small>{{ chartLabels[i] }}</small>
+        </div>
+
+      </div>
+
+      <!-- LINE CHART -->
+      <div
+        class="line-wrap"
+        *ngIf="chartType==='line'"
+      >
+
+        <svg viewBox="0 0 100 220" preserveAspectRatio="none">
+
+          <polyline
+            [attr.points]="linePoints"
+            fill="none"
+            stroke="#2e7d32"
+            stroke-width="2"
+          ></polyline>
+
+          <circle
+            *ngFor="let item of chartData; let i=index"
+            [attr.cx]="(i/(chartData.length-1))*100"
+            [attr.cy]="220-(item/maxValue)*220"
+            r="1.8"
+            fill="#2e7d32"
+          ></circle>
+
+        </svg>
+
+        <div class="line-labels">
+          <small *ngFor="let item of chartLabels">
+            {{ item }}
+          </small>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SIDE PANEL -->
+    <div class="side-card">
+
+      <h3>AI Insights</h3>
+
+      <div class="tip-box">
+        Highest growth appears during selected period.
+      </div>
+
+      <div class="tip-box">
+        Expenses ratio remains stable.
+      </div>
+
+      <div class="tip-box">
+        Revenue momentum is positive.
+      </div>
+
+      <div class="tip-box">
+        Consider reinvesting surplus.
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- KPI -->
+  <div class="stats-grid">
+
+    <div class="stat-card green">
+      <h4>Revenue Today</h4>
+      <h2>₹42,000</h2>
+      <p>+12%</p>
+    </div>
+
+    <div class="stat-card blue">
+      <h4>Profit Margin</h4>
+      <h2>28%</h2>
+      <p>Healthy</p>
+    </div>
+
+    <div class="stat-card orange">
+      <h4>Cash Reserve</h4>
+      <h2>₹2.4L</h2>
+      <p>Secure</p>
+    </div>
+
+    <div class="stat-card red">
+      <h4>Expense Ratio</h4>
+      <h2>46%</h2>
+      <p>Monitor</p>
+    </div>
+
+  </div>
+
+
+  <!-- BREAKDOWN -->
+  <div class="bottom-grid">
+
+    <div class="cost-card">
+
+      <h3>Expense Breakdown</h3>
+
+      <div class="progress-row">
+        <span>Inventory</span>
+        <div class="track"><div class="fill w42"></div></div>
+        <small>42%</small>
+      </div>
+
+      <div class="progress-row">
+        <span>Rent</span>
+        <div class="track"><div class="fill w25"></div></div>
+        <small>25%</small>
+      </div>
+
+      <div class="progress-row">
+        <span>Marketing</span>
+        <div class="track"><div class="fill w18"></div></div>
+        <small>18%</small>
+      </div>
+
+      <div class="progress-row">
+        <span>Misc</span>
+        <div class="track"><div class="fill w15"></div></div>
+        <small>15%</small>
+      </div>
+
+    </div>
+
+
+    <div class="cost-card">
+
+      <h3>Growth Suggestions</h3>
+
+      <ul class="suggest-list">
+        <li>Boost stock before weekends.</li>
+        <li>Reduce recurring wastage costs.</li>
+        <li>Promote top-selling categories.</li>
+        <li>Improve investor readiness score.</li>
+        <li>Maintain ledger consistency.</li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,1 +1,120 @@
-<p>investor-contact works!</p>
+<div class="container-fluid investor-page">
+
+  <!-- KYC NOT DONE -->
+  <div *ngIf="!isKycDone" class="kyc-lock">
+
+    <div class="lock-card text-center">
+
+      <h2>Unlock Business Funding</h2>
+
+      <p>
+        Verified investors only connect with KYC approved businesses.
+        Complete your KYC to access funding opportunities.
+      </p>
+
+      <div class="benefits row mt-4">
+
+        <div class="col-md-4 mb-3">
+          <div class="mini-box">Trusted Investors</div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <div class="mini-box">Higher Visibility</div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <div class="mini-box">Fast Funding Access</div>
+        </div>
+
+      </div>
+
+      <button class="btn btn-success px-4 mt-3" (click)="goToKyc()">
+        Complete KYC
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- KYC DONE -->
+  <div *ngIf="isKycDone">
+
+    <div class="top-head">
+      <h2>Investor Connect Hub</h2>
+      <p>Manage investor interest and raise capital professionally.</p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Investors -->
+      <div class="col-lg-7">
+
+        <div class="main-card">
+
+          <h4 class="mb-4">Interested Investors</h4>
+
+          <div
+            class="investor-card"
+            *ngFor="let item of interestedInvestors"
+          >
+            <div>
+              <h5>{{item.name}}</h5>
+              <small>{{item.type}}</small>
+            </div>
+
+            <div class="text-end">
+              <strong>{{item.interest}}</strong>
+              <p>ROI {{item.roi}}</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Proposal -->
+      <div class="col-lg-5">
+
+        <div class="main-card">
+
+          <h4 class="mb-4">Raise Capital</h4>
+
+          <label>Funding Needed</label>
+          <input
+            class="form-control mb-3"
+            placeholder="₹20,00,000"
+            [(ngModel)]="proposal.amount"
+          />
+
+          <label>Equity Offered</label>
+          <input
+            class="form-control mb-3"
+            placeholder="20%"
+            [(ngModel)]="proposal.equity"
+          />
+
+          <label>Use of Funds</label>
+          <textarea
+            class="form-control mb-3"
+            rows="4"
+            placeholder="Expansion / Inventory / Marketing"
+            [(ngModel)]="proposal.purpose"
+          ></textarea>
+
+          <button
+            class="btn btn-success w-100"
+            (click)="submitProposal()"
+          >
+            Submit Proposal
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

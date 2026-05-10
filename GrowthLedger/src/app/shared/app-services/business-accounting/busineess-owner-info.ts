@@ -12,4 +12,5 @@ export class BusineessOwnerInfo {
   businessType !: any;
   gstNumber !: any;
   businessAdress !: any;
+  kycStatus !:any;
 }
